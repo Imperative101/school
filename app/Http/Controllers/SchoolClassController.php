@@ -14,7 +14,9 @@ class SchoolClassController extends Controller
      */
     public function index()
     {
-        //
+        $schoolClasses = schoolClass::all();
+       return view('schoolClass.index', ['schoolClasses' => $schoolClasses]);
+
     }
 
     /**
@@ -35,7 +37,12 @@ class SchoolClassController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            $schoolClass = new schoolClass;
+            $schoolClass->grade = $request->grade;
+            $schoolClass->letter = $request->letter;
+            $schoolClass->save();
+            return redirect()->route('schoolClass.index');
+            
     }
 
     /**

@@ -8,14 +8,30 @@
                <div class="card-header">PAVADINIMAS</div>
 
                <div class="card-body">
-               @foreach ($authors as $author)
-              <a href="{{route('author.edit',[$author])}}">{{$author->title}} {{$author->authorAuthor->name}} {{$author->authorAuthor->surname}}</a>
-              <form method="POST" action="{{route('author.destroy', [$author])}}">
+                   <table class="table">
+                       <tr>
+                           <th>Klase</th>
+                           <th>Raide</th>
+                           <th>edit</th>
+                           <th>Delete</th>
+                       </tr>
+
+
+               @foreach ($schoolClassess as $schoolClass)
+               <tr>
+               <td>{!!$schoolClass->grade!!}</td>
+               <td>{!!$schoolClass->letter!!}</td>
+               <td><a class="btn btn-primary href="{{route('schoolClass.edit',[$schoolClass])}}">edit</a></td>
+                <td>
+                <form method="POST" action="{{route('schoolClass.destroy', [$schoolClass])}}">
+
+               </tr>
+             
               @csrf
               <button type="submit">DELETE</button>
               </form>
               <br>
-@endforeach
+                @endforeach
                </div>
            </div>
        </div>
