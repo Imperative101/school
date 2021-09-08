@@ -14,9 +14,8 @@ class SchoolClassController extends Controller
      */
     public function index()
     {
-        $schoolClasses = schoolClass::all();
-       return view('schoolClass.index', ['schoolClasses' => $schoolClasses]);
-
+        $schoolClasses = SchoolClass::all();
+        return view('schoolClass.index', ['schoolClasses' => $schoolClasses]);
     }
 
     /**
@@ -37,12 +36,11 @@ class SchoolClassController extends Controller
      */
     public function store(Request $request)
     {
-            $schoolClass = new schoolClass;
-            $schoolClass->grade = $request->grade;
-            $schoolClass->letter = $request->letter;
-            $schoolClass->save();
-            return redirect()->route('schoolClass.index');
-            
+        $schoolClass = new SchoolClass();
+        $schoolClass->grade = $request->grade;
+        $schoolClass->letter = $request->letter;
+        $schoolClass->save();
+        return redirect()->route('schoolClass.index');
     }
 
     /**
@@ -53,7 +51,8 @@ class SchoolClassController extends Controller
      */
     public function show(SchoolClass $schoolClass)
     {
-        //
+      
+       return view('schoolClass.show',['schoolClass' =>$schoolClass ]);
     }
 
     /**
@@ -64,7 +63,8 @@ class SchoolClassController extends Controller
      */
     public function edit(SchoolClass $schoolClass)
     {
-        //
+        return view('schoolClass.edit', ['schoolClass' => $schoolClass]);
+
     }
 
     /**
@@ -76,7 +76,10 @@ class SchoolClassController extends Controller
      */
     public function update(Request $request, SchoolClass $schoolClass)
     {
-        //
+        $schoolClass->grade = $request->grade;
+        $schoolClass->letter = $request->letter;
+        $schoolClass->save();
+        return redirect()->route('schoolClass.index');
     }
 
     /**
@@ -87,6 +90,7 @@ class SchoolClassController extends Controller
      */
     public function destroy(SchoolClass $schoolClass)
     {
-        //
+        $schoolClass->delete();
+        return redirect()->route('schoolClass.index');
     }
 }
