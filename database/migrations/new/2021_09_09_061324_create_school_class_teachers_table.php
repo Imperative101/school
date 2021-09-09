@@ -14,16 +14,18 @@ class CreateSchoolClassTeachersTable extends Migration
     public function up()
     {
         Schema::create('school_class_teachers', function (Blueprint $table) {
-            $table->id();
+ 
             $table->unsignedBigInteger('teacher_id');
-            $table->foreign('teacher_id')->references('id')->on('teachers');
             $table->unsignedBigInteger('school_class_id');
+            
+            $table->foreign('teacher_id')->references('id')->on('teachers');
             $table->foreign('school_class_id')->references('id')->on('school_classes');
+            $table->primary(['teacher_id', 'school_class_id']);
             $table->timestamps();
         });
     }
 
-    /** php artisan migrate --path=/database/migrations/new
+    /**
      * Reverse the migrations.
      *
      * @return void

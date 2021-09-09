@@ -1,5 +1,3 @@
-
-
 @extends('layouts.app')
 
 @section('content')
@@ -11,6 +9,22 @@
         </div>
            <div class="card">
                <div class="card-header"><b>Mokytojų sąrašas</b></div>
+
+
+               <form action="{{route('schoolClass.add',[$schoolClass])}}" method="post">
+                @csrf
+              <select name="teacher" id="">
+                @foreach ($teachers as $teacher)
+                    
+                <option value="{{$teacher->id}}">{{$teacher->name}}</option>
+                @endforeach
+              </select>
+              <button type="submit">add</button>
+              </form>
+
+
+
+
 
                <div class="card-body">
                  <table class="table">
