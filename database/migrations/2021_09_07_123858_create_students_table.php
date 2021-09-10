@@ -13,7 +13,7 @@ class CreateSchoolClassTeachersTable extends Migration
      */
     public function up()
     {
-        Schema::create('school_class_teachers', function (Blueprint $table) {
+        Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('teacher_id');
             $table->foreign('teacher_id')->references('id')->on('teachers');
